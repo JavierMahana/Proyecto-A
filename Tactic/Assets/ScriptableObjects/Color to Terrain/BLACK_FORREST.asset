@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe80bb142fcf3d45ae92c5ad1439e2b, type: 3}
+  m_Name: BLACK_FORREST
+  m_EditorClassIdentifier: 
+  terrain: {fileID: 11400000, guid: de7eab0f1070bf148ab72d2a0fe822e3, type: 2}
+  color: {r: 0, g: 0.21568628, b: 0, a: 1}

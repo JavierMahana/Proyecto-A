@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc52461c08ac87548b68eeaec8227603, type: 3}
+  m_Name: Plains
+  m_EditorClassIdentifier: 
+  walkingMovementCost: 1
+  ridingMovementCost: 1
+  flyingMovementCost: 1
+  navegatingMovementCost: 0
+  evacionModifier: 0
+  defenseModifier: 0
+  isWalkable: 1
+  isRideable: 1
+  isFlyable: 1
+  isNavigable: 0

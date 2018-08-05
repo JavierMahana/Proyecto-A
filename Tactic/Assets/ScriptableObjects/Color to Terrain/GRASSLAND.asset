@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe80bb142fcf3d45ae92c5ad1439e2b, type: 3}
+  m_Name: GRASSLAND
+  m_EditorClassIdentifier: 
+  terrain: {fileID: 11400000, guid: 86c462c99d502f44b976313c77f4a3fe, type: 2}
+  color: {r: 0, g: 1, b: 0, a: 1}
