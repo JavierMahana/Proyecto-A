@@ -4,9 +4,23 @@ public class MapGenerator : MonoBehaviour {
 
     public enum GenerationMode {ByTexture, Procedual};
     public GenerationMode generationMode;
-
+    [Header("By Texture MapGeneration Variables")]
     public Texture2D level;
     public ColorToTerrain[] colorMappings;
+
+    [Header("Procedual MapGeneration Variables")]
+    public int mapWidth = 1;
+    public int mapHeight = 1;
+    public float scale;
+    [Range(1,20)]
+    public int octaves = 1;
+    [Range(0f,1f)]
+    public float persistace = .5f;
+    public float lacunarity = 2;
+
+    public bool autoUpdateInEditor;
+
+    
     public Map map;
 
     [HideInInspector]
@@ -16,11 +30,23 @@ public class MapGenerator : MonoBehaviour {
 
     void Start()
     {
-        Generate();
+        GenerateMapByTexture();
         
     }
 
-    public void Generate()
+
+    public void GenerateMapWithNoiseMap()
+    {
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight,octaves,persistace,lacunarity, scale);
+
+
+        MapDisplay mapDisplay = FindObjectOfType<MapDisplay>();
+
+        mapDisplay.DrawNoiseMap(noiseMap);
+
+    }
+
+    public void GenerateMapByTexture()
     {
         GenerateMap();
         GenerateMapGO(level.width, level.height);

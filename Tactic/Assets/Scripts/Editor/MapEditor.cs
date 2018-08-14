@@ -6,12 +6,36 @@ public class MapEditor : Editor {
 
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
+        
+        
         MapGenerator thisMapGenerator = (MapGenerator)target;
+        if (DrawDefaultInspector())
+        {
+            if (thisMapGenerator.autoUpdateInEditor)
+            {
+                if (thisMapGenerator.generationMode == MapGenerator.GenerationMode.ByTexture)
+                {
+                    thisMapGenerator.GenerateMapByTexture();
+                }
+                else if (thisMapGenerator.generationMode == MapGenerator.GenerationMode.Procedual)
+                {
+                    thisMapGenerator.GenerateMapWithNoiseMap();
+                }
+            }
+        }
 
         if (GUILayout.Button("Generate!"))
         {
-            thisMapGenerator.Generate();
+            if (thisMapGenerator.generationMode == MapGenerator.GenerationMode.ByTexture)
+            {
+                thisMapGenerator.GenerateMapByTexture();
+            }
+            else if (thisMapGenerator.generationMode == MapGenerator.GenerationMode.Procedual)
+            {
+                thisMapGenerator.GenerateMapWithNoiseMap();
+            }
+               
+            
         }
        
     }
