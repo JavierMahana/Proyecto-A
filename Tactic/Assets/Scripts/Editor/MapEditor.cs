@@ -4,11 +4,13 @@ using UnityEngine;
 [CustomEditor(typeof(MapGenerator))]
 public class MapEditor : Editor {
 
+
     public override void OnInspectorGUI()
     {
         
-        
+
         MapGenerator thisMapGenerator = (MapGenerator)target;
+
         if (DrawDefaultInspector())
         {
             if (thisMapGenerator.autoUpdateInEditor)
@@ -34,8 +36,7 @@ public class MapEditor : Editor {
             {
                 thisMapGenerator.GenerateMapWithNoiseMap();
             }
-               
-            
+
         }
        
     }

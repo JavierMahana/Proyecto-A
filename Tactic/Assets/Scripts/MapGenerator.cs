@@ -12,6 +12,8 @@ public class MapGenerator : MonoBehaviour {
     public int mapWidth = 1;
     public int mapHeight = 1;
     public float scale;
+    public int seed;
+    public Vector2 offSet;
     [Range(1,20)]
     public int octaves = 1;
     [Range(0f,1f)]
@@ -30,19 +32,44 @@ public class MapGenerator : MonoBehaviour {
 
     void Start()
     {
-        GenerateMapByTexture();
+        Debug.Log("hi");
+        GenerateMapWithNoiseMap();
+        //GenerateMapByTexture();
         
     }
-
+    private void OnValidate()
+    {
+        if (mapHeight < 1)
+        {
+            mapHeight = 1;
+        }
+        if (mapWidth < 1)
+        {
+            mapWidth = 1;
+        }
+        if (lacunarity < 1)
+        {
+            lacunarity = 1;
+        }
+        if (octaves < 0)
+        {
+            octaves = 0;
+        }
+        if (scale < 0.00001)
+        {
+            scale = 0.00001f;
+        }
+    }
 
     public void GenerateMapWithNoiseMap()
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight,octaves,persistace,lacunarity, scale);
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, seed, offSet,octaves,persistace,lacunarity, scale);
 
 
         MapDisplay mapDisplay = FindObjectOfType<MapDisplay>();
 
-        mapDisplay.DrawNoiseMap(noiseMap);
+        Debug.Log("se accede a map display");
+        mapDisplay.CreateMapUsingNoiseMap(noiseMap);
 
     }
 
@@ -102,7 +129,7 @@ public class MapGenerator : MonoBehaviour {
     {
         
         Mesh mesh;
-        mesh = map.AddComponent<MeshFilter>().mesh;
+        mesh = map.AddComponent<MeshFilter>().sharedMesh;
         mesh = map.AddComponent<MeshCollider>().sharedMesh;
 
         Vector3[] vertices = new Vector3[4];

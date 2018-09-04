@@ -1,53 +1,63 @@
 ﻿using UnityEngine;
 
-public class MeshGenerator : MonoBehaviour {
-    //REdo Total
-    //Arreglar el tema de los sprites y texturas 2D
-    //cambiar los sprites a texturas 2d
-    //mejor a materiales
+public static class MeshGenerator {
 
-        //Cambio Total!!!
 
-        //mañana revertire el sistema de creacion del mapa
-        //seran simples sprites
-/*
-        /// <summary>
-        /// Crea un mesh para pasarselo al mapa
-        /// </summary>
-        /// <param name="xSize"></param>
-        /// <param name="ySize"></param>
-        /// <param name="map">Map Data</param>
-    public void GenerateMapMeshes(int xSize, int ySize, Map map)
+    public static void GenerateCuadMesh(GameObject rendererColliderContainer, 
+        Vector3 bottomLeft, Vector3 topLeft, Vector3 bottomRight, Vector3 topRight)
     {
-        for (int y = 0; y < ySize; y++)
-        {
-            for (int x = 0; x < xSize; x++)
-            {
-                
-                GameObject tile = new GameObject(x.ToString() + "|" + y.ToString() + "Mesh");
-                tile.transform.SetParent(this.transform); 
+        MeshCollider collider = rendererColliderContainer.GetComponent<MeshCollider>();
+        MeshFilter filter = rendererColliderContainer.GetComponent<MeshFilter>();
 
-                Mesh newMesh = tile.AddComponent<MeshFilter>().mesh;
-                
+        Mesh newMesh = new Mesh();
 
+        Vector3[] vertices = new Vector3[4] {bottomLeft, bottomRight, topLeft, topRight};
+        int[] triangles = new int[6];
 
-                Vector3[] vertices = new Vector3[4];
+        triangles[0] = 0;
+        triangles[1] = triangles[4] = 2;
+        triangles[2] = triangles[3] = 1;
+        triangles[5] = 3;
 
-                
-                
+        newMesh.vertices = vertices;
+        newMesh.triangles = triangles;
 
+        filter.sharedMesh = newMesh;
+        collider.sharedMesh = newMesh;
 
-
-
-
-                tile.AddComponent<MeshRenderer>().material = map.GetTile(x,y).terrain_.visual;
-
-
-
-            }
-        }
     }
-    */
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="rendererColliderContainer"></param>
+    /// <param name="vertices">left/rigth bottom/up</param>
+    public static void GenerateCuadMesh(GameObject rendererColliderContainer, Vector3[]vertices)
+    {
+        MeshCollider collider = rendererColliderContainer.GetComponent<MeshCollider>();
+        MeshFilter filter = rendererColliderContainer.GetComponent<MeshFilter>();
+
+        Mesh newMesh = new Mesh();
+
+        
+        int[] triangles = new int[6];
+
+        triangles[0] = 0;
+        triangles[1] = triangles[4] = 2;
+        triangles[2] = triangles[3] = 1;
+        triangles[5] = 3;
+
+        newMesh.vertices = vertices;
+        newMesh.triangles = triangles;
+        
+
+        filter.sharedMesh = newMesh;
+        collider.sharedMesh = newMesh;
+        
+
+    }
+
+
+
     /*
     public static Mesh GenerateMesh(int xSize, int ySize)
     {
